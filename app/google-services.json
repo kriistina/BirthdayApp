@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "29237003626",
+    "project_id": "birthdayapp-7729f",
+    "storage_bucket": "birthdayapp-7729f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:29237003626:android:c121f35aa842f0cd5dd113",
+        "android_client_info": {
+          "package_name": "ba.sum.fpmoz.birthdayapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQyTPqvpE6-wy8Y0rkxwKny5SbhFmVqCk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
