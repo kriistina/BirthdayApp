@@ -1,0 +1,88 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddBirthdayActivity">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:boxStrokeColor="#FF80AB"
+            app:hintTextColor="#FF80AB">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/birthdayNameTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Unesite rođendan"
+                android:textColorHighlight="#FF80AB"
+                android:textColorLink="#FF80AB" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:boxStrokeColor="#FF80AB"
+            app:hintTextColor="#FF80AB">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/birthdayDatext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Unesite datum"
+                android:textColorHighlight="#FF80AB"
+                android:textColorHint="#FF80AB"
+                android:textColorLink="#FF80AB" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="#FF80AB"
+            app:hintTextColor="#FF80AB">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/giftIdeaTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Unesite poklon"
+                android:textColorHighlight="#FF80AB"
+                android:textColorHint="#FF80AB"
+                android:textColorLink="#FF80AB" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/odaberiSliku"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+            app:srcCompat="@drawable/ic_baseline_add_photo_alternate_24" />
+
+        <Button
+            android:id="@+id/addBirthdayBtn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="40dp"
+            android:backgroundTint="#ff6699"
+            android:text="DODAJ RODJENDAN"
+            android:textColorHighlight="#00FFFFFF"
+            android:textColorLink="#00673AB7"
+            android:textSize="16sp"
+            app:cornerRadius="20dp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
