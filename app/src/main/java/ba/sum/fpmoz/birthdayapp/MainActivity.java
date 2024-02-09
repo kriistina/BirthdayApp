@@ -14,16 +14,26 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    FirebaseAuth auth;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         this.auth = FirebaseAuth.getInstance();
+
+        FirebaseUser user = this.auth.getCurrentUser();
+
+        if (user != null) {
+            Intent i = new Intent(getApplicationContext(), StartActivity.class);
+            startActivity(i);
+            finish();
+        }
 
         Button loginBtn = findViewById(R.id.loginBtn);
         Button registerBtn = findViewById(R.id.registerBtn);
@@ -44,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
                 String email = emailTxt.getText().toString();
                 String password = passwordPwd.getText().toString();
 
-                // Provjera praznih polja
                 if (email.isEmpty() || password.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Unesite e-mail i lozinku", Toast.LENGTH_LONG).show();
                     return;
@@ -57,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Uspješno ste se prijavili", Toast.LENGTH_LONG).show();
                             Intent i = new Intent(getApplicationContext(), StartActivity.class);
                             startActivity(i);
+                            finish();
                         } else {
                             Toast.makeText(getApplicationContext(), "Pokušajte ponovo", Toast.LENGTH_LONG).show();
                         }

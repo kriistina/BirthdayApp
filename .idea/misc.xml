@@ -4,9 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Toshiba/AndroidStudioProjects/BirthdayApp/app/src/main/res/drawable-v24/edit_text.xml" value="0.2203125" />
+        <entry key="..\:/Users/Toshiba/AndroidStudioProjects/BirthdayApp/app/src/main/res/drawable/ic_baseline_add_photo_alternate_24.xml" value="0.2203125" />
         <entry key="..\:/Users/Toshiba/AndroidStudioProjects/BirthdayApp/app/src/main/res/drawable/ic_odjava.xml" value="0.2203125" />
+        <entry key="..\:/Users/Toshiba/AndroidStudioProjects/BirthdayApp/app/src/main/res/layout/activity_add_birthday.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/Toshiba/AndroidStudioProjects/BirthdayApp/app/src/main/res/layout/activity_edit_rodjendan.xml" value="0.17481884057971014" />
         <entry key="..\:/Users/Toshiba/AndroidStudioProjects/BirthdayApp/app/src/main/res/layout/activity_main.xml" value="0.12771739130434784" />
         <entry key="..\:/Users/Toshiba/AndroidStudioProjects/BirthdayApp/app/src/main/res/layout/activity_register.xml" value="0.1838768115942029" />
+        <entry key="..\:/Users/Toshiba/AndroidStudioProjects/BirthdayApp/app/src/main/res/layout/activity_rodjendan.xml" value="0.17481884057971014" />
         <entry key="..\:/Users/Toshiba/AndroidStudioProjects/BirthdayApp/app/src/main/res/layout/activity_start.xml" value="0.1838768115942029" />
       </map>
     </option>
