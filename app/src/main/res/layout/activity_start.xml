@@ -27,6 +27,7 @@
             app:srcCompat="@drawable/ic_odjava"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/logoutBtn"
+            android:contentDescription="Logout"
  />
 
         <Button

@@ -1,11 +1,5 @@
 package ba.sum.fpmoz.birthdayapp;
 
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,7 +9,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -23,9 +25,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import ba.sum.fpmoz.birthdayapp.model.Rodjendan;
-
 import java.util.UUID;
+
+import ba.sum.fpmoz.birthdayapp.model.Rodjendan;
 
 public class AddBirthdayActivity extends AppCompatActivity {
 
@@ -40,9 +42,7 @@ public class AddBirthdayActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        mDatabase = FirebaseDatabase.getInstance("https://birthdayapp-7729f-default-rtdb.europe-west1.firebasedatabase.app/")
-                .getReference("timetables/rodjendani");
-
+        mDatabase = FirebaseDatabase.getInstance("https://birthdayapp-7729f-default-rtdb.europe-west1.firebasedatabase.app/").getReference("timetables/rodjendani");
         storageReference = FirebaseStorage.getInstance("gs://birthdayapp-7729f.appspot.com").getReference();
 
         EditText birthdayNameTxt = findViewById(R.id.birthdayNameTxt);
@@ -76,46 +76,51 @@ public class AddBirthdayActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (imageUri != null) {
-                    StorageReference ref = storageReference
-                            .child("slike/" + UUID.randomUUID().toString());
-
-                    ref.putFile(imageUri)
-                            .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    StorageReference ref = storageReference.child("slike/" + UUID.randomUUID().toString());
+                    ref.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
-                                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        // Dohvati URL za preuzimanje slike
-                                        Uri downloadUri = task.getResult().getUploadSessionUri(); // Promijenjeno ovdje
-                                        // Spremi podatke u Firebase Realtime Database
-                                        String slika = downloadUri.toString();
-                                        Rodjendan noviRodjendan = new Rodjendan(birthdayNameTxt.getText().toString(), birthdayDateTxt.getText().toString(), giftIdeaTxt.getText().toString(), slika);
+                                public void onSuccess(Uri uri) {
+                                    String imageUrl = uri.toString();
+                                    String naziv = birthdayNameTxt.getText().toString();
+                                    String datum = birthdayDateTxt.getText().toString();
+                                    String poklon = giftIdeaTxt.getText().toString();
 
-                                        mDatabase.push().setValue(noviRodjendan)
-                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<Void> task) {
-                                                        if (task.isSuccessful()) {
-                                                            birthdayNameTxt.setText("");
-                                                            birthdayDateTxt.setText("");
-                                                            giftIdeaTxt.setText("");
+                                    Rodjendan noviRodjendan = new Rodjendan(naziv, datum, poklon, imageUrl);
 
-                                                            Intent i = new Intent(getApplicationContext(), StartActivity.class);
-                                                            startActivity(i);
-                                                        } else {
-                                                            Toast.makeText(getApplicationContext(), "Greška pri spremanju podataka", Toast.LENGTH_LONG).show();
-                                                        }
-                                                    }
-                                                });
-                                    } else {
-                                        Toast.makeText(getApplicationContext(), "Greška pri uploadu slike", Toast.LENGTH_LONG).show();
-                                    }
+                                    String key = mDatabase.push().getKey();
+                                    mDatabase.child(key).setValue(noviRodjendan).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                birthdayNameTxt.setText("");
+                                                birthdayDateTxt.setText("");
+                                                giftIdeaTxt.setText("");
+
+                                                Intent i = new Intent(getApplicationContext(), StartActivity.class);
+                                                startActivity(i);
+                                            } else {
+                                                Toast.makeText(getApplicationContext(), "Greška prilikom spremanja rođendana.", Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+                                    });
                                 }
                             });
-
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getApplicationContext(), "Greška prilikom učitavanja slike.", Toast.LENGTH_LONG).show();
+                        }
+                    });
                 } else {
                     Toast.makeText(getApplicationContext(), "Molimo odaberite sliku", Toast.LENGTH_LONG).show();
                 }
             }
         });
+
+
     }
 }
