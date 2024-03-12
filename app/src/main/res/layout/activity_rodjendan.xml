@@ -1,9 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rodjendanScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RodjendanActivity">
+    android:background="#fddde6"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:fillViewport="true">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fddde6"
+        tools:context=".RodjendanActivity">
+
+        <ImageView
+            android:id="@+id/rodjendanImageView"
+            android:layout_width="0dp"
+            android:layout_height="285dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="#f5f5f5"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rodjendanImageView"
+            app:layout_constraintVertical_bias="0.0">
+
+            <TextView
+                android:id="@+id/nazivTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/datum"
+                android:layout_width="236dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:id="@+id/poklon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="25sp" />
+
+
+
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/shareBtn"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="228dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="#FFFFFF"
+            android:foreground="@drawable/ic_share_"
+            app:backgroundTint="#00FFFFFF"
+            android:contentDescription="Podijeli"
+            app:fabSize="auto"
+            app:layout_constraintEnd_toEndOf="@+id/rodjendanImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:useCompatPadding="false" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

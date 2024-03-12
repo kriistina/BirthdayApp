@@ -1,4 +1,5 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,8 +17,7 @@
             android:text="Odjava"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
- />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/logoutBtn2"
@@ -26,29 +26,26 @@
             android:background="@android:color/transparent"
             app:srcCompat="@drawable/ic_odjava"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/logoutBtn"
-            android:contentDescription="Logout"
- />
+            app:layout_constraintTop_toBottomOf="@id/logoutBtn"
+            android:contentDescription="Logout" />
 
-        <Button
-            android:id="@+id/addEventBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Dodaj rođendan"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/logoutBtn"
- />
-
-        <ListView
-            android:id="@+id/rodjendaniListView"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rodjendaniListView1"
             android:layout_width="0dp"
-            android:layout_height="629dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="1dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/logoutBtn2" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logoutBtn2"
+            app:layout_constraintBottom_toTopOf="@id/addNewRodjendanBtn" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addNewRodjendanBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_baseline_add_circle_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
